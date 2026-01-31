@@ -1,3 +1,23 @@
+Step 2️⃣ Remove the old amd64 one (optional but cleaner)
+
+If Docker still complains later:
+
+docker image rm mwader/static-ffmpeg:latest
+docker pull --platform linux/arm64 mwader/static-ffmpeg:latest
+
+✅ Now extract ffmpeg (simple + reliable)
+
+Forget the fancy inline build for a moment. Use this clean, readable method:
+
+docker create --platform linux/arm64 --name ffextract mwader/static-ffmpeg:latest
+docker cp ffextract:/ffmpeg ./ffmpeg
+docker cp ffextract:/ffprobe ./ffprobe
+docker rm ffextract
+
+====================================================
+
+
+
 ## static-ffmpeg
 
 Docker image with
